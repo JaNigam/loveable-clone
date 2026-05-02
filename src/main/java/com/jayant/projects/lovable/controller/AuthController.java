@@ -7,8 +7,9 @@ import com.jayant.projects.lovable.dto.auth.SignupRequest;
 import com.jayant.projects.lovable.dto.auth.UserProfileResponse;
 import com.jayant.projects.lovable.service.AuthService;
 import com.jayant.projects.lovable.service.UserService;
+import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
-import org.apache.coyote.Response;
+import lombok.experimental.FieldDefaults;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,10 +19,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/auth")
+@FieldDefaults(makeFinal = true, level = AccessLevel.PRIVATE)
 public class AuthController {
 
-    private AuthService authService;
-    private UserService userService;
+    AuthService authService;
+    UserService userService;
 
     //wrapper around the return object
     @PostMapping("/signup")

@@ -3,7 +3,7 @@ package com.jayant.projects.lovable.controller;
 
 import com.jayant.projects.lovable.dto.member.InviteMemberRequest;
 import com.jayant.projects.lovable.dto.member.MemberResponse;
-import com.jayant.projects.lovable.entity.ProjectMember;
+import com.jayant.projects.lovable.dto.member.UpdateMemberRoleRequest;
 import com.jayant.projects.lovable.service.ProjectMemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -19,7 +19,7 @@ public class ProjectMemberController {
     private final ProjectMemberService projectMemberService;
 
     @GetMapping
-    public ResponseEntity<List<ProjectMember>> getProjectMembers(@PathVariable long projectId) {
+    public ResponseEntity<List<MemberResponse>> getProjectMembers(@PathVariable long projectId) {
         Long userId = 1L; // This should be obtained from the authenticated user context
         return ResponseEntity.ok(projectMemberService.getProjectMembers(projectId, userId));
     }
@@ -31,13 +31,13 @@ public class ProjectMemberController {
     }
 
     @PatchMapping("/{memberId}")
-    ResponseEntity<MemberResponse> updateMemberRole(@PathVariable Long projectId, @PathVariable Long memberId, @RequestBody InviteMemberRequest request) {
+    ResponseEntity<MemberResponse> updateMemberRole(@PathVariable Long projectId, @PathVariable Long memberId, @RequestBody UpdateMemberRoleRequest request) {
         Long userId = 1L; // This should be obtained from the authenticated user context
         return ResponseEntity.ok(projectMemberService.updateMemberRole(projectId, memberId, request, userId));
     }
 
     @DeleteMapping("/{memberId}")
-    public ResponseEntity<MemberResponse> updateMemberRole(
+    public ResponseEntity<MemberResponse> deleteMember(
             @PathVariable Long projectId,
             @PathVariable Long memberId
     ) {
