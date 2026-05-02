@@ -3,9 +3,12 @@ package com.jayant.projects.lovable.service;
 import com.jayant.projects.lovable.dto.member.InviteMemberRequest;
 import com.jayant.projects.lovable.dto.member.MemberResponse;
 import com.jayant.projects.lovable.entity.ProjectMember;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
+@Service
 public interface ProjectMemberService {
     List<ProjectMember> getProjectMembers(long projectId, Long userId);
 
